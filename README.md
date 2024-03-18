@@ -10,3 +10,5 @@ Each team has a function to write in LargeNumber.java. Add tests to TestNumber.j
 - Team6: Init + Constructor from String
 - Team7: Percent
 - Team8: Power
+
+Let me know if you have any questions.
