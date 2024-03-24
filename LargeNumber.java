@@ -137,8 +137,65 @@ public class LargeNumber implements Comparable<LargeNumber> {
 	}
 	
     // Team 2
-	public void subtract(LargeNumber other) {
+    public void subtract(LargeNumber other) {
+    	// Determine the sign and magnitude relationship between this and other
+    	int compareMagnitude = compareMagnitude(other);
+    	// If they have the same magnitude and sign, the result is zero.
+    	if (compareMagnitude == 0 && this.sign == other.sign) {
+        	this.number.clear(); // Clear the current number to reset it
+        	this.number.add(0); // The result is zero
+        	this.sign = 1; // The sign of the result is positive
+        	return;
+    	}
+
+        // Determine which number is larger based on the magnitude comparison.
+        boolean thisIsLarger = compareMagnitude > 0; // True if this number is larger
+        LargeNumber larger = thisIsLarger ? this : other; // Assign the larger number
+        LargeNumber smaller = thisIsLarger ? other : this; // Assign the smaller number
+
+        ArrayList<Integer> result = new ArrayList<>();
+        int borrow = 0; // Initialize borrow to 0
+        for (int i = 0; i < larger.number.size(); i++) {
+        	// Get digits from each number
+        	int largerDigit = i < larger.number.size() ? larger.number.get(i) : 0;
+        	int smallerDigit = i < smaller.number.size() ? smaller.number.get(i) : 0;
+        	// If the smaller number is being subtracted from the larger, adjust digits for subtraction
+        	if (!thisIsLarger) {
+            		smallerDigit = -smallerDigit; // Invert the subtraction
+        	}
+
+        	int diff = largerDigit - smallerDigit - borrow; // Compute the subtraction
+        	if (diff < 0) {
+            		borrow = 1; // Set borrow for the next digit if the result is negative
+            		diff += 10; // Adjust the difference by adding base (10) to it
+        	} else {
+            		borrow = 0; // No borrow needed if the result is non-negative
+        	}
+
+        	result.add(Math.abs(diff)); // Add to the result list
+    	}
+
+    	if (borrow != 0 && thisIsLarger) {
+        	// Handle the final borrow, only if this.number was originally larger
+        	int lastIndex = result.size() - 1;
+        	int lastDigit = result.get(lastIndex) - borrow;
+        	result.set(lastIndex, Math.abs(lastDigit));
+    	}
+
+    	// Removing any leading zeros from the result
+    	for (int i = result.size() - 1; i > 0 && result.get(i) == 0; i--) {
+        	result.remove(i);
+    	}
+
+    	// Update this LargeNumber with the result
+    	this.number = result;
+    	// Set the correct sign based on the original comparison
+    	this.sign = thisIsLarger == (this.sign == other.sign) ? 1 : -1;
 	}
+
+// Helper method to compare the magnitude of two LargeNumber instances
+// Code to be added here
+}
 	
     // Team 4 
     public void multiply(LargeNumber other) {	
