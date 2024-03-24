@@ -155,5 +155,12 @@ public class LargeNumber implements Comparable<LargeNumber> {
 	
 	// Team 8
 	public void power(LargeNumber other) {
+		 public static void main(String[] args) {
+
+    int base = 2, exponent = 9;
+    double result = Math.pow(base, exponent);
+
+    System.out.println("Answer = " + result);
+  
 	}
 }
