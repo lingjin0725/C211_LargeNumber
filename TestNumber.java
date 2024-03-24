@@ -72,6 +72,15 @@ public class TestNumber {
 	}
 	
 	// Team 8
-    public static void testPower() {
+	    public static void testPower() {
+
+        LargeNumber base = new LargeNumber(2);
+        LargeNumber exponent = new LargeNumber(9);
+
+        System.out.println("Base: " + base);
+        System.out.println("Exponent: " + exponent);
+
+        base.power(exponent);
+
+        System.out.println("Result: " + base);
 	}
-}
