@@ -70,17 +70,15 @@ public class TestNumber {
     // Team 3
     public static void testCompare() {
 	}
-	
 	// Team 8
-	    public static void testPower() {
-
-        LargeNumber base = new LargeNumber(2);
-        LargeNumber exponent = new LargeNumber(9);
-
-        System.out.println("Base: " + base);
-        System.out.println("Exponent: " + exponent);
-
+    public static void testPower() {
+        
+        LargeNumber base = new LargeNumber(3); 
+        LargeNumber exponent = new LargeNumber(3);  
+        
         base.power(exponent);
-
-        System.out.println("Result: " + base);
-	}
+        
+        System.out.println("3 ^ 3 = " + base);
+	System.out.println("0 ^ 3 = " + base);
+	System.out.println("3 ^ 1 = " + base);
+    }
