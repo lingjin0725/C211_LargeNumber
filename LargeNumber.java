@@ -211,13 +211,31 @@ public class LargeNumber implements Comparable<LargeNumber> {
 	
 	
 	// Team 8
-	public void power(LargeNumber other) {
-		 public static void main(String[] args) {
+    public void power(LargeNumber other) {
+        // convert the base number and the exponent to an integer
+        int base = this.toInt();
+        int exponent = other.toInt();
 
-    int base = 2, exponent = 9;
-    double result = Math.pow(base, exponent);
+        // initialize result to 1
+        int result = 1;
 
-    System.out.println("Answer = " + result);
-  
-	}
-}
+        // special case: if exponent is 0, result should be 1
+        if (exponent == 0) {
+            this.init(1);
+            return;
+        }
+
+        // special case: if base is 0, result should be 0
+        if (base == 0) {
+            this.init(0);
+            return;
+        }
+
+        // calculate the result of base^exponent
+        for (int i = 1; i <= exponent; i++) {
+            result = result * base;
+        }
+
+        // update this LargeNumber with the result
+        this.init(result);
+    }
